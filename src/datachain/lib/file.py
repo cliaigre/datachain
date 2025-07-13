@@ -714,6 +714,9 @@ class ImageFile(File):
         client_config: Optional[dict] = None,
     ):
         """Writes it's content to destination"""
+        if format is None:
+            format = self.format
+
         destination = stringify_path(destination)
 
         client: Client = self._catalog.get_client(destination, **(client_config or {}))
