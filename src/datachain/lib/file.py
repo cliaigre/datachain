@@ -714,13 +714,12 @@ class ImageFile(File):
         client_config: Optional[dict] = None,
     ):
         """Writes it's content to destination"""
-        if format is None:
-            format = self.format
-
         destination = stringify_path(destination)
 
         client: Client = self._catalog.get_client(destination, **(client_config or {}))
         with client.fs.open(destination, mode="wb") as f:
+            if format is None:
+                format = self.get_info().format
             self.read().save(f, format=format)
 
 
