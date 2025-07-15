@@ -688,7 +688,6 @@ class TextFile(File):
 
 class ImageFile(File):
     """`DataModel` for reading image files."""
-    from .image import image_info
 
     def get_info(self) -> "Image":
         """
@@ -715,6 +714,7 @@ class ImageFile(File):
         client_config: Optional[dict] = None,
     ):
         """Writes it's content to destination"""
+        from .image import image_info
         destination = stringify_path(destination)
 
         client: Client = self._catalog.get_client(destination, **(client_config or {}))
