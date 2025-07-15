@@ -688,6 +688,7 @@ class TextFile(File):
 
 class ImageFile(File):
     """`DataModel` for reading image files."""
+    from .image import image_info
 
     def get_info(self) -> "Image":
         """
